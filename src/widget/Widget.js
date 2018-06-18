@@ -8,6 +8,7 @@ class Widget extends Component {
         this.state = {
             animal: 'giraffe',
             selectedDonation: 5,
+            lastDonationRemembered: null,
             monthlyDonation: true
         };
     }
@@ -20,10 +21,9 @@ class Widget extends Component {
 
     handleDonationChange = (event) => {
         this.setState({
-            selectedDonation: Number(event.target.value)
+            selectedDonation: Number(event.target.value),
+            selectedDonationRemembered: Number(event.target.value)
         });
-
-        console.log(JSON.stringify(this.state))
     };
 
     handleSubmit = (event) => {
@@ -31,6 +31,24 @@ class Widget extends Component {
         event.preventDefault();
     };
 
+    handleManualInput = (event) => {
+        let value = event.target.value;
+        //Let's set radio button back to what it was before we changed it
+        let lastDonationRemembered = this.state.selectedDonationRemembered;
+        if (value !== '') {
+            this.resetRadioButtons(null)
+        } else {
+            this.resetRadioButtons(lastDonationRemembered)
+        }
+    };
+
+    resetRadioButtons = (value) => {
+        this.setState({
+            selectedDonation: value
+        });
+    };
+
+    //setState is async. Had to move the checking method to a function as the update to the state was step behind
     checkUpdatedValues = (value) => {
         return this.state.selectedDonation === value
     };
@@ -62,6 +80,8 @@ class Widget extends Component {
                                 </label>
                             )
                         })}
+                        <span>Or </span>
+                        <input type="number" onChange={this.handleManualInput}/>
                     </div>
                     <input type="submit" value="Submit" />
                 </form>
