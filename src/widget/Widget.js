@@ -7,8 +7,9 @@ class Widget extends Component {
         super(props);
         this.state = {
             animal: 'giraffe',
-            selectedDonation: 5,
-            lastDonationRemembered: null,
+            selectedDonation: DONATION_VALUES.defaultValue,
+            selectedDonationRemembered: DONATION_VALUES.defaultValue,
+            isManualInputInError: false,
             monthlyDonation: true
         };
     }
@@ -34,12 +35,17 @@ class Widget extends Component {
     handleManualInput = (event) => {
         let value = event.target.value;
         //Let's set radio button back to what it was before we changed it
-        let lastDonationRemembered = this.state.selectedDonationRemembered;
+        let lastDonationRememberedValue = this.state.selectedDonationRemembered;
         if (value !== '') {
             this.resetRadioButtons(null)
         } else {
-            this.resetRadioButtons(lastDonationRemembered)
+            this.resetRadioButtons(lastDonationRememberedValue)
         }
+
+        this.setState({
+            isManualInputInError: Number(value) < DONATION_VALUES.minManualValue && value !== ''
+        });
+
     };
 
     resetRadioButtons = (value) => {
@@ -69,19 +75,20 @@ class Widget extends Component {
                     </div>
                     <div>
                         <span>I want to donate:</span>
-                        {DONATION_VALUES.map((value,i) => {
+                        <br/>
+                        {DONATION_VALUES.values.map((value,i) => {
                             return (
                                 <label key={i}>
                                     <input type="radio"
                                            value={value}
                                            onChange={this.handleDonationChange}
                                            checked={this.checkUpdatedValues(value)}/>
-                                    £{value} {this.state.selectedDonation === 3}
+                                    £{value}
                                 </label>
                             )
                         })}
-                        <span>Or </span>
-                        <input type="number" onChange={this.handleManualInput}/>
+                        <span> Or </span>
+                        <input className={this.state.isManualInputInError ? 'error' : ''} type="number" onChange={this.handleManualInput}/>
                     </div>
                     <input type="submit" value="Submit" />
                 </form>
