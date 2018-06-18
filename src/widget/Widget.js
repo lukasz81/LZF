@@ -111,6 +111,9 @@ class Widget extends Component {
                            disabled={this.state.isManualInputInError}
                            value="Submit"/>
                 </form>
+                <div className={`animal-container ${this.state.animal}`}>
+                    <img src={`./images/${this.state.animal}-image.jpg`}/>
+                </div>
             </div>
         );
     }
