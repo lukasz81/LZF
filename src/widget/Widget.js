@@ -8,7 +8,6 @@ class Widget extends Component {
         this.state = {
             animal: 'giraffe',
             selectedDonation: DONATION_VALUES.defaultValue,
-            manualDonation: null,
             lastSelectedDonation: DONATION_VALUES.defaultValue,
             isManualInputInError: false,
             hasSetMonthlyDonation: true
@@ -38,12 +37,11 @@ class Widget extends Component {
         //Let's set radio button back to what it was before we changed it
         let lastDonationRememberedValue = this.state.lastSelectedDonation;
         if (value !== '') {
-            this.resetRadioButtons(null)
+            this.resetRadioButtons(value)
         } else {
             this.resetRadioButtons(lastDonationRememberedValue)
         }
         this.setState({
-            manualDonation: Number(value),
             isManualInputInError: Number(value) < DONATION_VALUES.minManualValue && value !== ''
         });
 

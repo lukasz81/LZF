@@ -51,20 +51,20 @@
       <file leaf-file-name="Widget.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/widget/Widget.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="114" column="32" lean-forward="false" selection-start-line="114" selection-start-column="32" selection-end-line="114" selection-end-column="32" />
+            <state relative-caret-position="73">
+              <caret line="9" column="59" lean-forward="false" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
-                <marker date="1529322844938" expanded="true" signature="2039:4334" ph="..." />
-                <marker date="1529322844938" expanded="true" signature="2091:4143" ph="..." />
-                <marker date="1529322844938" expanded="true" signature="2117:2613" ph="..." />
-                <marker date="1529322844938" expanded="true" signature="2149:2586" ph="..." />
-                <marker date="1529322844938" expanded="true" signature="2298:2553" ph="..." />
-                <marker date="1529322844938" expanded="true" signature="2639:3570" ph="..." />
-                <marker date="1529322844938" expanded="true" signature="2670:2694" ph="..." />
-                <marker date="1529322844938" expanded="true" signature="2876:3241" ph="..." />
-                <marker date="1529322844938" expanded="true" signature="2933:3123" ph="..." />
-                <marker date="1529322844938" expanded="true" signature="2933:3155" ph="..." />
+                <marker date="1529323631729" expanded="true" signature="1963:4258" ph="..." />
+                <marker date="1529323631729" expanded="true" signature="2015:4067" ph="..." />
+                <marker date="1529323631729" expanded="true" signature="2041:2537" ph="..." />
+                <marker date="1529323631729" expanded="true" signature="2073:2510" ph="..." />
+                <marker date="1529323631729" expanded="true" signature="2222:2477" ph="..." />
+                <marker date="1529323631729" expanded="true" signature="2563:3494" ph="..." />
+                <marker date="1529323631729" expanded="true" signature="2594:2618" ph="..." />
+                <marker date="1529323631729" expanded="true" signature="2800:3165" ph="..." />
+                <marker date="1529323631729" expanded="true" signature="2857:3047" ph="..." />
+                <marker date="1529323631729" expanded="true" signature="2857:3079" ph="..." />
               </folding>
             </state>
           </provider>
@@ -270,17 +270,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1529232989875</updated>
-      <workItem from="1529232991174" duration="26767000" />
+      <workItem from="1529232991174" duration="27371000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26767000" />
+    <option name="totallyTimeSpent" value="27371000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1663143" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1663143" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -413,20 +414,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/widget/Widget.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="114" column="32" lean-forward="false" selection-start-line="114" selection-start-column="32" selection-end-line="114" selection-end-column="32" />
+        <state relative-caret-position="73">
+          <caret line="9" column="59" lean-forward="false" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-            <marker date="1529322844938" expanded="true" signature="2039:4334" ph="..." />
-            <marker date="1529322844938" expanded="true" signature="2091:4143" ph="..." />
-            <marker date="1529322844938" expanded="true" signature="2117:2613" ph="..." />
-            <marker date="1529322844938" expanded="true" signature="2149:2586" ph="..." />
-            <marker date="1529322844938" expanded="true" signature="2298:2553" ph="..." />
-            <marker date="1529322844938" expanded="true" signature="2639:3570" ph="..." />
-            <marker date="1529322844938" expanded="true" signature="2670:2694" ph="..." />
-            <marker date="1529322844938" expanded="true" signature="2876:3241" ph="..." />
-            <marker date="1529322844938" expanded="true" signature="2933:3123" ph="..." />
-            <marker date="1529322844938" expanded="true" signature="2933:3155" ph="..." />
+            <marker date="1529323631729" expanded="true" signature="1963:4258" ph="..." />
+            <marker date="1529323631729" expanded="true" signature="2015:4067" ph="..." />
+            <marker date="1529323631729" expanded="true" signature="2041:2537" ph="..." />
+            <marker date="1529323631729" expanded="true" signature="2073:2510" ph="..." />
+            <marker date="1529323631729" expanded="true" signature="2222:2477" ph="..." />
+            <marker date="1529323631729" expanded="true" signature="2563:3494" ph="..." />
+            <marker date="1529323631729" expanded="true" signature="2594:2618" ph="..." />
+            <marker date="1529323631729" expanded="true" signature="2800:3165" ph="..." />
+            <marker date="1529323631729" expanded="true" signature="2857:3047" ph="..." />
+            <marker date="1529323631729" expanded="true" signature="2857:3079" ph="..." />
           </folding>
         </state>
       </provider>
