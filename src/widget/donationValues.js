@@ -1,0 +1,1 @@
+export const DONATION_VALUES = [3,5,10];
