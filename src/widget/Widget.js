@@ -19,15 +19,20 @@ class Widget extends Component {
     };
 
     handleDonationChange = (event) => {
-        console.log(JSON.stringify(this.state));
         this.setState({
-            selectedDonation: event.target.value
+            selectedDonation: Number(event.target.value)
         });
+
+        console.log(JSON.stringify(this.state))
     };
 
     handleSubmit = (event) => {
         alert(`State: ${JSON.stringify(this.state)}`);
         event.preventDefault();
+    };
+
+    checkUpdatedValues = (value) => {
+        return this.state.selectedDonation === value
     };
 
     render() {
@@ -52,7 +57,7 @@ class Widget extends Component {
                                     <input type="radio"
                                            value={value}
                                            onChange={this.handleDonationChange}
-                                           checked={this.state.selectedDonation === value}/>
+                                           checked={this.checkUpdatedValues(value)}/>
                                     £{value} {this.state.selectedDonation === 3}
                                 </label>
                             )
