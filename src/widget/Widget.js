@@ -14,7 +14,7 @@ class Widget extends Component {
         };
     }
 
-    handleChange = (event) => {
+    handleSelectChange = (event) => {
         this.setState({
             animal: event.target.value
         });
@@ -71,7 +71,7 @@ class Widget extends Component {
                     <div>
                         <label>
                             <span>I want to help:</span>
-                            <select value={this.state.animal} onChange={this.handleChange}>
+                            <select value={this.state.animal} onChange={this.handleSelectChange}>
                                 <option value="giraffe">a giraffe</option>
                                 <option value="rhino">a rhino</option>
                                 <option value="tiger">a tiger</option>
@@ -110,7 +110,7 @@ class Widget extends Component {
                            value="Submit"/>
                 </form>
                 <div className={`animal-container ${this.state.animal}`}>
-                    <img src={`./images/${this.state.animal}-image.jpg`}/>
+                    <img alt={`Image of ${this.state.animal}`} src={`./images/${this.state.animal}-image.jpg`}/>
                 </div>
             </div>
         );
