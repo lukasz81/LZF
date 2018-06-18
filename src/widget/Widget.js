@@ -8,9 +8,10 @@ class Widget extends Component {
         this.state = {
             animal: 'giraffe',
             selectedDonation: DONATION_VALUES.defaultValue,
-            selectedDonationRemembered: DONATION_VALUES.defaultValue,
+            manualDonation: null,
+            lastSelectedDonation: DONATION_VALUES.defaultValue,
             isManualInputInError: false,
-            monthlyDonation: true
+            hasSetMonthlyDonation: true
         };
     }
 
@@ -23,7 +24,7 @@ class Widget extends Component {
     handleDonationChange = (event) => {
         this.setState({
             selectedDonation: Number(event.target.value),
-            selectedDonationRemembered: Number(event.target.value)
+            lastSelectedDonation: Number(event.target.value)
         });
     };
 
@@ -35,17 +36,23 @@ class Widget extends Component {
     handleManualInput = (event) => {
         let value = event.target.value;
         //Let's set radio button back to what it was before we changed it
-        let lastDonationRememberedValue = this.state.selectedDonationRemembered;
+        let lastDonationRememberedValue = this.state.lastSelectedDonation;
         if (value !== '') {
             this.resetRadioButtons(null)
         } else {
             this.resetRadioButtons(lastDonationRememberedValue)
         }
-
         this.setState({
+            manualDonation: Number(value),
             isManualInputInError: Number(value) < DONATION_VALUES.minManualValue && value !== ''
         });
 
+    };
+
+    handleCheckBoxChange = (event) => {
+        this.setState({
+            hasSetMonthlyDonation: event.target.checked
+        })
     };
 
     resetRadioButtons = (value) => {
@@ -88,9 +95,21 @@ class Widget extends Component {
                             )
                         })}
                         <span> Or </span>
-                        <input className={this.state.isManualInputInError ? 'error' : ''} type="number" onChange={this.handleManualInput}/>
+                        <input className={this.state.isManualInputInError ? 'error' : ''}
+                               type="number"
+                               onChange={this.handleManualInput}/>
                     </div>
-                    <input type="submit" value="Submit" />
+                    <div>
+                        <label>
+                            <input type="checkbox"
+                                   onChange={this.handleCheckBoxChange}
+                                   checked={this.state.hasSetMonthlyDonation}/>
+                            <span>I want to do a monthly donation</span>
+                        </label>
+                    </div>
+                    <input type="submit"
+                           disabled={this.state.isManualInputInError}
+                           value="Submit"/>
                 </form>
             </div>
         );

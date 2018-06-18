@@ -17,6 +17,7 @@ Yellow (Tertiary Buttons, Page Border) = #fec01e
 body {
     background-color: var(--off-white);
 }
+
 input.error {
     box-shadow: 0px 0px 20px var(--yellow);
 }
