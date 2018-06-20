@@ -66,7 +66,7 @@ export class Widget extends Component {
 
     render() {
         return (
-            <div className={'widget'}>
+            <section className={'widget'}>
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <label>
@@ -112,7 +112,7 @@ export class Widget extends Component {
                 <div className={`animal-container ${this.state.animal}`}>
                     <img alt={`${this.state.animal}`} src={`./images/${this.props.animal}-image.jpg`}/>
                 </div>
-            </div>
+            </section>
         );
     }
 }

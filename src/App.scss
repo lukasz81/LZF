@@ -6,20 +6,6 @@
   Yellow (Tertiary Buttons, Page Border) = #fec01e
 */
 
-@mixin button($color, $line-color) {
-  background-color: $color;
-  border: none;
-  border-radius: 0;
-  width: 140px;
-  height: 40px;
-  color: white;
-  font-weight: bold;
-  font-size: 14px;
-  box-shadow: inset 0 -5px 0 $line-color;
-  font-family: 'Open Sans', sans-serif;
-  cursor: pointer;
-}
-
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 :root {
@@ -80,61 +66,12 @@ a {
   }
 }
 
-header {
-  height: 122px;
-  width: 100%;
-  background: white;
-  box-shadow: inset 0 10px 0 var(--yellow);
-  .logo {
-    width: 224px;
-    height: 62px;
-    background-image: url('./svg/lts-logo-dark.svg');
-    margin:0 34px 0 0;
-    padding:0;
-    align-self: center;
-    a {
-      width: 100%;
-      height: 100%;
-    }
-  }
-  nav {
-    border-left: 1px solid black;
-    height: 56px;
-    ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0 0 0 31px;
-      font-size: 16px;
-      height: 100%;
-      li:first-child {
-        margin: 0;
-      }
-      li {
-        color: var(--dark-grey);
-        margin: 0 0 0 15px;
-      }
-    }
-  }
-  .search {
-    min-height: 40px;
-    width: 275px;
-    font-size: 14px;
-    border-radius: 0;
-    border: 1px solid #CDCDCD;
-    margin: 0 40px;
-    padding-left: 20px;
-    background: url('./svg/magnfier.svg') no-repeat calc(100% - 20px) 50%;
-    -webkit-appearance: textfield;
-  }
-  .cta {
-    @include button(var(--green), rgba(0,0,0, 0.1));
-  }
-}
-
 input {
   .error {
     box-shadow: 0 0 20px var(--yellow);
   }
 }
+
+//@import './header/Header.scss';
 
 

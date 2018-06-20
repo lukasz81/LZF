@@ -1,0 +1,13 @@
+@mixin button($color, $line-color) {
+  background-color: $color;
+  border: none;
+  border-radius: 0;
+  width: 140px;
+  height: 40px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: inset 0 -5px 0 $line-color;
+  font-family: 'Open Sans', sans-serif;
+  cursor: pointer;
+}
