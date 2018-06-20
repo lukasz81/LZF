@@ -5,15 +5,19 @@ Dark Grey (Text, Secondary Buttons) = #474c55
 Green (Primary Buttons, Widget Title) = #6db420
 Yellow (Tertiary Buttons, Page Border) = #fec01e
 */
+
 :root {
-  --off-white: #f4f4f4;
-  --white: #ffffff;
-  --dark-grey: #474c55;
-  --green: #6db420;
-  --yellow: #fec01e; }
+    --off-white: #f4f4f4;
+    --white: #ffffff;
+    --dark-grey: #474c55;
+    --green: #6db420;
+    --yellow: #fec01e;
+}
 
 body {
-  background-color: var(--off-white); }
+    background-color: var(--off-white);
+}
 
 input.error {
-  box-shadow: 0 0 20px var(--yellow); }
+    box-shadow: 0 0 20px var(--yellow);
+}
