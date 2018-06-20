@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="22px" viewBox="0 0 18 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>magnfier</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop" transform="translate(-1311.000000, -50.000000)">
+            <g id="NAV">
+                <g id="search" transform="translate(1075.000000, 41.000000)">
+                    <g id="magnfier" transform="translate(236.000000, 9.000000)">
+                        <circle id="Oval" stroke="#CDCDCD" stroke-width="3" cx="8" cy="8" r="6.5"></circle>
+                        <path d="M10.7100454,13.3048345 C11.4795453,12.7868821 12.5565675,12.9449186 13.1156419,13.6578189 L17.6709637,19.4665096 C18.230038,20.1794099 18.0594545,21.1772131 17.2899546,21.6951655 C16.5204547,22.2131179 15.4434325,22.0550814 14.8843581,21.3421811 L10.3290363,15.5334904 C9.76996196,14.8205901 9.94054552,13.8227869 10.7100454,13.3048345 Z" id="Rectangle-3" fill="#CDCDCD"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
