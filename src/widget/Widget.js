@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import {DONATION_VALUES} from './donationValues';
+import { connect } from 'react-redux';
+import {changeAnimalType} from '../actions';
 
-class Widget extends Component {
+export class Widget extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            animal: 'giraffe',
             selectedDonation: DONATION_VALUES.defaultValue,
             lastSelectedDonation: DONATION_VALUES.defaultValue,
             isManualInputInError: false,
@@ -15,24 +16,17 @@ class Widget extends Component {
     }
 
     handleSelectChange = (event) => {
-        this.setState({
-            animal: event.target.value
-        });
+        this.props.changeAnimalType(event.target.value);
     };
 
-    handleDonationChange = (event) => {
+    handleDonationChange = event => {
         this.setState({
             selectedDonation: Number(event.target.value),
             lastSelectedDonation: Number(event.target.value)
         });
     };
 
-    handleSubmit = (event) => {
-        alert(`State: ${JSON.stringify(this.state)}`);
-        event.preventDefault();
-    };
-
-    handleManualInput = (event) => {
+    handleManualInput = event => {
         let value = event.target.value;
         //Let's set radio button back to what it was before we changed it
         let lastDonationRememberedValue = this.state.lastSelectedDonation;
@@ -47,21 +41,27 @@ class Widget extends Component {
 
     };
 
-    handleCheckBoxChange = (event) => {
+    handleCheckBoxChange = event => {
         this.setState({
             hasSetMonthlyDonation: event.target.checked
         })
     };
 
-    resetRadioButtons = (value) => {
+    resetRadioButtons = value => {
         this.setState({
             selectedDonation: value
         });
     };
 
     //setState is async. Had to move the checking method to a function as the update to the state was step behind
-    checkUpdatedValues = (value) => {
+    checkUpdatedValues = value => {
         return this.state.selectedDonation === value
+    };
+
+
+    handleSubmit = event => {
+        event.preventDefault();
+        console.log(`State: ${JSON.stringify(this.state)}`);
     };
 
     render() {
@@ -71,7 +71,7 @@ class Widget extends Component {
                     <div>
                         <label>
                             <span>I want to help:</span>
-                            <select value={this.state.animal} onChange={this.handleSelectChange}>
+                            <select className={'select'} value={this.props.animal} onChange={this.handleSelectChange}>
                                 <option value="giraffe">a giraffe</option>
                                 <option value="rhino">a rhino</option>
                                 <option value="tiger">a tiger</option>
@@ -110,11 +110,22 @@ class Widget extends Component {
                            value="Submit"/>
                 </form>
                 <div className={`animal-container ${this.state.animal}`}>
-                    <img alt={`Image of ${this.state.animal}`} src={`./images/${this.state.animal}-image.jpg`}/>
+                    <img alt={`${this.state.animal}`} src={`./images/${this.props.animal}-image.jpg`}/>
                 </div>
             </div>
         );
     }
 }
 
-export default Widget;
+const mapStateToProps = state => {
+    return {
+        state,
+        animal: state.animal
+    }
+};
+
+const mapDispatchToProps = dispatch => ({
+    changeAnimalType: animal => dispatch(changeAnimalType(animal))
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(Widget);
