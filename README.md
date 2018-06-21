@@ -1,6 +1,6 @@
 # Little Zebra Foundation
 
-This is a single page app that uses component state as well as Redux.
+This is a React.js single page app that uses component state as well as Redux.
 
 ## TL;DR
 
