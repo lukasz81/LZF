@@ -1,0 +1,19 @@
+footer {
+  width: 100%;
+  min-height: 275px;
+  background: var(--dark-grey); }
+  footer ul:last-child {
+    margin: 0; }
+    footer ul:last-child li {
+      margin: 0; }
+  footer ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 120px 0 0;
+    color: white; }
+    footer ul li {
+      margin: 5px 20px 0 0; }
+  footer a {
+    color: white; }
+    footer a:hover {
+      color: var(--yellow); }

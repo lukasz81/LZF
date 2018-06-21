@@ -1,18 +1,11 @@
-.donate-header {
-  font-size: 34px; }
-
 .form-header {
   font-size: 28px;
   color: var(--green); }
 
-.donate-paragraph {
-  font-size: 24px;
-  margin: 10px 0 60px 0; }
-
 .widget {
   background-color: white;
   position: relative;
-  margin: 0 auto;
+  margin: 60px auto;
   width: 780px;
   height: 544px; }
   .widget .image-container {

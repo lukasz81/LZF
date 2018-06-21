@@ -76,14 +76,14 @@ export class Widget extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        console.log(`State: ${JSON.stringify(this.state)}`);
+        alert(`State: ${JSON.stringify(this.state)}`);
     };
 
     render() {
         return (
             <React.Fragment>
-                <h2 className={'text-transform--uppercase text-align--center text-weight--bold donate-header'}>Donate today</h2>
-                <p className={'text-align--center donate-paragraph'}> Help protecting the planet today, become a Little Zebra ambassador</p>
+                <h2 className={'text-transform--uppercase text-align--center text-weight--bold page-header'}>Donate today</h2>
+                <p className={'text-align--center page-paragraph'}> Help protecting the planet today, become a Little Zebra ambassador</p>
                 <section className={'widget display--flex space-between'}>
                     <div className={'form-container'}>
                         <h3 className={'text-transform--uppercase text-align--center text-weight--bold form-header'}>Make a donation</h3>

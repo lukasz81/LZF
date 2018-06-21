@@ -1,10 +1,41 @@
 import React, { Component } from 'react';
+import './Footer.css'
 
 class Footer extends Component {
     render() {
         return (
             <footer className="footer">
-                <p>This is a footer</p>
+                <div className={'container display--flex'}>
+                    <ul>
+                        <li><h4 className={'text-transform--uppercase'}>Who we are</h4></li>
+                        <li><a href={'./'}>Our history</a></li>
+                        <li><a href={'./'}>Press center</a></li>
+                        <li><a href={'./'}>Contact us</a></li>
+                    </ul>
+                    <ul>
+                        <li><h4 className={'text-transform--uppercase'}>Get involved</h4></li>
+                        <li><a href={'./'}>Join us</a></li>
+                        <li><a href={'./'}>Donate</a></li>
+                        <li><a href={'./'}>Careers</a></li>
+                        <li><a href={'./'}>Shop</a></li>
+                    </ul>
+                    <ul>
+                        <li><h4 className={'text-transform--uppercase'}>Follow us</h4></li>
+                        <div className={'display--flex'}>
+                            <li><a href={'./'}><img alt={'Facebook'} src={'./images/facebook-logo.svg'}/></a></li>
+                            <li><a href={'./'}><img alt={'Pinterest'} src={'./images/pinterest-logo.svg'}/></a></li>
+                            <li><a href={'./'}><img alt={'Twitter'} src={'./images/twitter-logo.svg'}/></a></li>
+                            <li><a href={'./'}><img alt={'Youtube'} src={'./images/youtube-logo.svg'}/></a></li>
+                        </div>
+                    </ul>
+                    <ul>
+                        <h4><img alt={'logo'} src={'./images/lts-logo-light.svg'}/></h4>
+                        <li>3 Warren Rd,<br/>
+                            Mary Tavy,<br/>
+                            Tavystock PL19 9PF,<br/>
+                            United Kingdom</li>
+                    </ul>
+                </div>
             </footer>
         );
     }

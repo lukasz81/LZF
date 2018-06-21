@@ -27,6 +27,15 @@ html {
 *, *:before, *:after {
   box-sizing: inherit; }
 
+.page-header {
+  font-size: 34px;
+  margin: 50px 0; }
+
+.page-paragraph {
+  font-size: 24px;
+  margin: 10px 0 30px 0;
+  color: var(--dark-grey); }
+
 .display--flex {
   display: flex; }
 
@@ -50,12 +59,14 @@ html {
 
 .container {
   position: relative;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto; }
 
 a {
   text-decoration: none;
   color: var(--dark-grey); }
+  a:hover {
+    color: black; }
 
 .text-weight--bold {
   font-weight: bold; }
