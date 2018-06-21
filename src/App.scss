@@ -21,6 +21,15 @@ body {
   margin:0;
   padding:0;
   font-family: 'Open Sans',  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
 .display {
@@ -30,11 +39,24 @@ body {
   &--block {
     display: block;
   }
+  &--inline-block {
+    display: inline-block;
+  }
+}
+
+.space-between {
+  justify-content: space-between;
 }
 
 .align-self {
   &--center {
     align-self: center;
+  }
+  &--flex-end{
+    align-self: flex-end;
+  }
+  &--flex-start{
+    align-self: flex-start;
   }
 }
 
@@ -50,28 +72,35 @@ a {
 }
 
 .text {
+  &-weight {
+    &--bold {
+      font-weight: bold;
+    }
+  }
+  &-align {
+    &--center {
+      text-align: center;
+    }
+  }
   &--decoration-none {
     text-decoration: none
   }
   &--indent {
     text-indent: -10000000px;
   }
-  &--transform {
-    &-uppercase {
+  &-transform {
+    &--uppercase {
       text-transform: uppercase;
     }
-    &-capitalize {
+    &--capitalize {
       text-transform: capitalize;
     }
   }
 }
 
-input {
-  .error {
-    box-shadow: 0 0 20px var(--yellow);
-  }
+input.error {
+  box-shadow: 0 0 20px var(--yellow);
+  background: var(--yellow);
 }
-
-//@import './header/Header.scss';
 
 

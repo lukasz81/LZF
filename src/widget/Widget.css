@@ -1,0 +1,94 @@
+.donate-header {
+  font-size: 34px; }
+
+.form-header {
+  font-size: 28px;
+  color: var(--green); }
+
+.donate-paragraph {
+  font-size: 24px;
+  margin: 10px 0 60px 0; }
+
+.widget {
+  background-color: white;
+  position: relative;
+  margin: 0 auto;
+  width: 780px;
+  height: 544px; }
+  .widget .image-container {
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 180px;
+    overflow: hidden; }
+    .widget .image-container img {
+      height: 100%;
+      margin-left: -200%; }
+  .widget ::placeholder {
+    color: black;
+    opacity: 1; }
+  .widget :-ms-input-placeholder {
+    color: red; }
+  .widget .form-container {
+    width: calc(100% - 180px); }
+    .widget .form-container form {
+      padding: 0 50px; }
+      .widget .form-container form label:last-child {
+        margin: 0; }
+      .widget .form-container form .radio-label {
+        width: 70px;
+        display: inline-flex;
+        cursor: pointer;
+        vertical-align: middle; }
+        .widget .form-container form .radio-label.is-checked-true {
+          background: var(--green);
+          box-shadow: inset 0 0 0 2px var(--green);
+          color: white; }
+        .widget .form-container form .radio-label span {
+          align-self: center;
+          display: block;
+          width: 100%;
+          font-size: 24px; }
+      .widget .form-container form .donation-span {
+        margin: 20px 0;
+        display: inline-block; }
+      .widget .form-container form .donation-input {
+        height: 54px;
+        box-shadow: inset 0 0 0 2px black;
+        border: 0;
+        border-radius: 0;
+        color: black; }
+      .widget .form-container form input[type=radio] {
+        position: absolute;
+        pointer-events: none;
+        visibility: hidden; }
+      .widget .form-container form .select {
+        -webkit-appearance: none;
+        -ms-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        font-size: 16px;
+        padding: 0 10px;
+        background: white;
+        width: 360px;
+        background: url("../svg/triangle.svg") no-repeat calc(100% - 20px) 50%; }
+      .widget .form-container form input[type=number] {
+        font-size: 24px;
+        width: 212px;
+        margin: 0;
+        padding: 0 20px; }
+      .widget .form-container form .cta {
+        background-color: var(--green);
+        border: none;
+        border-radius: 0;
+        width: 140px;
+        height: 40px;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.1);
+        font-family: 'Open Sans', sans-serif;
+        cursor: pointer;
+        text-transform: uppercase; }
+        .widget .form-container form .cta.error {
+          opacity: 0.5; }

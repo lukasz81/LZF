@@ -1,0 +1,100 @@
+@import '../Mixins.scss';
+$img-container-width: 180px;
+.donate-header {
+  font-size: 34px;
+}
+.form-header {
+  font-size: 28px;
+  color: var(--green);
+}
+.donate-paragraph {
+  font-size: 24px;
+  margin: 10px 0 60px 0;
+}
+.widget {
+  background-color: white;
+  position: relative;
+  margin: 0 auto;
+  width: 780px;
+  height: 544px;
+  .image-container {
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: $img-container-width;
+    overflow: hidden;
+    img {
+      height: 100%;
+      margin-left: -200%;
+    }
+  }
+  ::placeholder {
+    color: black;
+    opacity: 1;
+  }
+  :-ms-input-placeholder {
+    color: red;
+  }
+  .form-container {
+    width: calc(100% - #{$img-container-width});
+    form {
+      padding: 0 50px;
+      label:last-child {
+        margin:0;
+      }
+      .radio-label {
+        width: 70px;
+        display: inline-flex;
+        cursor: pointer;
+        vertical-align: middle;
+        &.is-checked-true {
+          background: var(--green);
+          box-shadow: inset 0 0 0 2px var(--green);
+          color: white;
+        }
+        span {
+          align-self: center;
+          display: block;
+          width: 100%;
+          font-size: 24px;
+        }
+      }
+      .donation-span {
+        margin: 20px 0;
+        display: inline-block;
+      }
+      .donation-input {
+        height: 54px;
+        box-shadow: inset 0 0 0 2px black;
+        border: 0;
+        border-radius: 0;
+        color: black;
+      }
+      input[type=radio] {
+        position: absolute;
+        pointer-events: none;
+        visibility: hidden;
+      }
+      .select {
+        -webkit-appearance: none;
+        -ms-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        font-size: 16px;
+        padding: 0 10px;
+        background: white;
+        width: 360px;
+        background: url('../svg/triangle.svg') no-repeat calc(100% - 20px) 50%;
+      }
+      input[type=number] {
+        font-size: 24px;
+        width: 212px;
+        margin: 0;
+        padding:0 20px;
+      }
+      .cta {
+        @include button(var(--green), rgba(0,0,0, 0.1));
+      }
+    }
+  }
+}
