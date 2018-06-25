@@ -4,20 +4,11 @@ import { connect } from 'react-redux';
 import {
     changeAnimalType,
     setDonationValues,
-    setManualDonationValues
+    setToRegularDonations
 } from '../actions';
 import './Widget.css';
 
 export class Widget extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            lastSelectedDonation: DONATION_VALUES.defaultValue,
-            isManualInputInError: false,
-            hasSetMonthlyDonation: true
-        };
-    }
 
     handleSelectChange = (event) => {
         this.props.changeAnimalType(event.target.value);
@@ -25,57 +16,26 @@ export class Widget extends Component {
 
     handleDonationChange = event => {
         let value = event.target.value;
-        this.resetManualInputField(event);
-        this.props.setDonationValues(value);
-
-        this.setState({
-            lastSelectedDonation: Number(event.target.value)
-        });
+        this.props.setDonationValues({value: value, isSetManually: false});
     };
 
     handleManualInput = event => {
         let value = event.target.value;
-        //Let's set radio button back to what it was before we changed it
-        let lastDonationRememberedValue = this.state.lastSelectedDonation;
-        if (value !== '') {
-            this.resetRadioButtons(value)
-        } else {
-            this.resetRadioButtons(lastDonationRememberedValue)
-        }
-        this.props.setDonationValues(value);
-        // this.setState({
-        //     manualInputValue: value,
-        //     isManualInputInError: Number(value) < DONATION_VALUES.minManualValue && value !== ''
-        // });
-
+        this.props.setDonationValues({value: value === '' ?  DONATION_VALUES.defaultValue : value, isSetManually: value !== ''});
     };
 
     handleCheckBoxChange = event => {
-        this.setState({
-            hasSetMonthlyDonation: event.target.checked
-        })
+        this.props.setToRegularDonations(event.target.checked);
     };
 
     resetRadioButtons = value => {
-        this.setState({
-            selectedDonation: value
-        });
-    };
-
-    resetManualInputField = event => {
-        let value = Number(event.target.value);
-        if (value <  DONATION_VALUES.minManualValue) {
-            this.resetRadioButtons(this.state.lastSelectedDonation);
-            this.setState({
-                manualInputValue: '',
-                isManualInputInError: false
-            });
-        }
+        this.props.setDonationValues({value: value, isSetManually: false});
     };
 
     //setState is async. Had to move the checking method to a function as the update to the state was step behind
-    checkUpdatedValues = value => {
-        return this.props.selectedDonationValue === value
+    checkUpdatedValues = inputValue => {
+        let {value,isSetManually} = this.props.selectedDonationValue;
+        return inputValue === value && !isSetManually
     };
 
 
@@ -85,6 +45,7 @@ export class Widget extends Component {
     };
 
     render() {
+        let {state} = this.props;
         return (
             <React.Fragment>
                 <h2 className={'text-transform--uppercase text-align--center text-weight--bold page-header'}>Donate today</h2>
@@ -95,7 +56,7 @@ export class Widget extends Component {
                         <form onSubmit={this.handleSubmit}>
                             <div className={'display--flex space-between'}>
                                 <span className={'align-self--center'}>I want to help:</span>
-                                <select className={'select donation-input'} value={this.props.animal} onChange={this.handleSelectChange}>
+                                <select className={'select donation-input'} value={state.animal} onChange={this.handleSelectChange}>
                                     <option value="giraffe">a giraffe</option>
                                     <option value="rhino">a rhino</option>
                                     <option value="tiger">a tiger</option>
@@ -115,30 +76,28 @@ export class Widget extends Component {
                                     )
                                 })}
                                 <span className={'align-self--center'}>Or</span>
-                                <input className={this.props.isUserSettingIllegalManualValue ? 'error donation-input' : 'donation-input'}
+                                <input className={state.isUserSettingIllegalManualValue ? 'error donation-input' : 'donation-input'}
                                        type="number"
                                        min='11'
                                        placeholder={'£'}
-                                       value={this.props.manualInputValue}
-                                       onBlur={this.resetManualInputField}
                                        onChange={this.handleManualInput}/>
                             </div>
                             <div>
                                 <label>
                                     <input type="checkbox"
                                            onChange={this.handleCheckBoxChange}
-                                           checked={this.state.hasSetMonthlyDonation}/>
+                                           checked={state.isRegularDonation}/>
                                     <span className={'donation-span'}>I want to do a monthly donation</span>
                                 </label>
                             </div>
                             <input type="submit"
-                                   className={this.state.isManualInputInError ? 'cta error':'cta'}
-                                   disabled={this.state.isManualInputInError}
+                                   className={state.isUserSettingIllegalManualValue ? 'cta error':'cta'}
+                                   disabled={state.isUserSettingIllegalManualValue}
                                    value="Donate now"/>
                         </form>
                     </div>
-                    <div className={`image-container ${this.props.animal} align-self--flex-end`}>
-                        <img alt={`${this.props.animal}`} src={`./images/${this.props.animal}-image.jpg`}/>
+                    <div className={`image-container ${state.animal} align-self--flex-end`}>
+                        <img alt={`${state.animal}`} src={`./images/${state.animal}-image.jpg`}/>
                     </div>
                 </section>
             </React.Fragment>
@@ -151,15 +110,16 @@ const mapStateToProps = state => {
         state,
         animal: state.animal,
         selectedDonationValue: state.selectedDonationValue,
-        isUserSettingIllegalManualValue: state.isUserSettingIllegalManualValue
+        isUserSettingIllegalManualValue: state.isUserSettingIllegalManualValue,
+        isRegularDonation: state.isRegularDonation
 
     }
 };
 
 const mapDispatchToProps = dispatch => ({
     changeAnimalType: animal => dispatch(changeAnimalType(animal)),
-    setDonationValues: value => dispatch(setDonationValues(value)),
-    setManualDonationValues: value => dispatch(setManualDonationValues(value))
+    setDonationValues: donation => dispatch(setDonationValues(donation)),
+    setToRegularDonations: isSet => dispatch(setToRegularDonations(isSet))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Widget);
