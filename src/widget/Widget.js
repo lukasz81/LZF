@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import {DONATION_VALUES} from './donationValues';
 import { connect } from 'react-redux';
-import {changeAnimalType} from '../actions';
+import {
+    changeAnimalType,
+    setDonationValues,
+    setManualDonationValues
+} from '../actions';
 import './Widget.css';
 
 export class Widget extends Component {
@@ -9,9 +13,7 @@ export class Widget extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedDonation: DONATION_VALUES.defaultValue,
             lastSelectedDonation: DONATION_VALUES.defaultValue,
-            manualInputValue: '',
             isManualInputInError: false,
             hasSetMonthlyDonation: true
         };
@@ -22,9 +24,11 @@ export class Widget extends Component {
     };
 
     handleDonationChange = event => {
+        let value = event.target.value;
         this.resetManualInputField(event);
+        this.props.setDonationValues(value);
+
         this.setState({
-            selectedDonation: Number(event.target.value),
             lastSelectedDonation: Number(event.target.value)
         });
     };
@@ -38,10 +42,11 @@ export class Widget extends Component {
         } else {
             this.resetRadioButtons(lastDonationRememberedValue)
         }
-        this.setState({
-            manualInputValue: value,
-            isManualInputInError: Number(value) < DONATION_VALUES.minManualValue && value !== ''
-        });
+        this.props.setDonationValues(value);
+        // this.setState({
+        //     manualInputValue: value,
+        //     isManualInputInError: Number(value) < DONATION_VALUES.minManualValue && value !== ''
+        // });
 
     };
 
@@ -70,7 +75,7 @@ export class Widget extends Component {
 
     //setState is async. Had to move the checking method to a function as the update to the state was step behind
     checkUpdatedValues = value => {
-        return this.state.selectedDonation === value
+        return this.props.selectedDonationValue === value
     };
 
 
@@ -110,11 +115,11 @@ export class Widget extends Component {
                                     )
                                 })}
                                 <span className={'align-self--center'}>Or</span>
-                                <input className={this.state.isManualInputInError ? 'error donation-input' : 'donation-input'}
+                                <input className={this.props.isUserSettingIllegalManualValue ? 'error donation-input' : 'donation-input'}
                                        type="number"
                                        min='11'
                                        placeholder={'£'}
-                                       value={this.state.manualInputValue}
+                                       value={this.props.manualInputValue}
                                        onBlur={this.resetManualInputField}
                                        onChange={this.handleManualInput}/>
                             </div>
@@ -144,12 +149,17 @@ export class Widget extends Component {
 const mapStateToProps = state => {
     return {
         state,
-        animal: state.animal
+        animal: state.animal,
+        selectedDonationValue: state.selectedDonationValue,
+        isUserSettingIllegalManualValue: state.isUserSettingIllegalManualValue
+
     }
 };
 
 const mapDispatchToProps = dispatch => ({
-    changeAnimalType: animal => dispatch(changeAnimalType(animal))
+    changeAnimalType: animal => dispatch(changeAnimalType(animal)),
+    setDonationValues: value => dispatch(setDonationValues(value)),
+    setManualDonationValues: value => dispatch(setManualDonationValues(value))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Widget);
