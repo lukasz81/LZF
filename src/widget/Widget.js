@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import {
     changeAnimalType,
     setDonationValues,
-    setToRegularDonations
+    setToRegularDonations,
+    rememberLastDonationValue
 } from '../actions';
 import './Widget.css';
 
@@ -17,11 +18,13 @@ export class Widget extends Component {
     handleDonationChange = event => {
         let value = event.target.value;
         this.props.setDonationValues({value: value, isSetManually: false});
+        this.props.rememberLastDonationValue(value);
     };
 
     handleManualInput = event => {
         let value = event.target.value;
-        this.props.setDonationValues({value: value === '' ?  DONATION_VALUES.defaultValue : value, isSetManually: value !== ''});
+        let rememberedValue = this.props.lastRememberedDonationValue;
+        this.props.setDonationValues({value: value === '' ?  rememberedValue : value, isSetManually: value !== ''});
     };
 
     handleCheckBoxChange = event => {
@@ -34,14 +37,18 @@ export class Widget extends Component {
 
     //setState is async. Had to move the checking method to a function as the update to the state was step behind
     checkUpdatedValues = inputValue => {
-        let {value,isSetManually} = this.props.selectedDonationValue;
+        let {value,isSetManually} = this.props.donation;
         return inputValue === value && !isSetManually
     };
 
+    reset = () => {
+        let {value,isSetManually} = this.props.donation;
+        return isSetManually ? Number(value) : ''
+    };
 
     handleSubmit = event => {
         event.preventDefault();
-        alert(`State: ${JSON.stringify(this.state)}`);
+        alert(`State: ${JSON.stringify(this.props)}`);
     };
 
     render() {
@@ -79,6 +86,7 @@ export class Widget extends Component {
                                 <input className={state.isUserSettingIllegalManualValue ? 'error donation-input' : 'donation-input'}
                                        type="number"
                                        min='11'
+                                       value={this.reset()}
                                        placeholder={'£'}
                                        onChange={this.handleManualInput}/>
                             </div>
@@ -109,17 +117,18 @@ const mapStateToProps = state => {
     return {
         state,
         animal: state.animal,
-        selectedDonationValue: state.selectedDonationValue,
+        donation: state.selectedDonation,
         isUserSettingIllegalManualValue: state.isUserSettingIllegalManualValue,
-        isRegularDonation: state.isRegularDonation
-
+        isRegularDonation: state.isRegularDonation,
+        lastRememberedDonationValue: state.lastRememberedDonationValue
     }
 };
 
 const mapDispatchToProps = dispatch => ({
     changeAnimalType: animal => dispatch(changeAnimalType(animal)),
     setDonationValues: donation => dispatch(setDonationValues(donation)),
-    setToRegularDonations: isSet => dispatch(setToRegularDonations(isSet))
+    setToRegularDonations: isSet => dispatch(setToRegularDonations(isSet)),
+    rememberLastDonationValue: value => dispatch(rememberLastDonationValue(value))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Widget);

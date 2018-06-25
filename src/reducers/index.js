@@ -2,17 +2,19 @@ import {DONATION_VALUES} from "../widget/donationValues";
 import {
     ANIMAL_TYPE,
     SET_DONATION_VALUE,
-    SET_TO_REGULAR_DONATION
+    SET_TO_REGULAR_DONATION,
+    REMEMBER_LAST_DONATION_VALUE
 } from '../actions/actionTypes';
 
 const initialState = {
     animal: 'giraffe',
-    selectedDonationValue: {
+    selectedDonation: {
         value: DONATION_VALUES.defaultValue,
         isSetManually: false
     },
     isUserSettingIllegalManualValue: false,
-    isRegularDonation: true
+    isRegularDonation: true,
+    lastRememberedDonationValue: null
 };
 
 export default function editFormReducer(state=initialState, action) {
@@ -28,7 +30,7 @@ export default function editFormReducer(state=initialState, action) {
             let {value,isSetManually} = action.donation;
             return {
                 ...state,
-                selectedDonationValue: {
+                selectedDonation: {
                     value: value !== '' ? Number(value) : '',
                     isSetManually: isSetManually
                 },
@@ -39,6 +41,12 @@ export default function editFormReducer(state=initialState, action) {
             return {
                 ...state,
                 isRegularDonation: action.isRegularDonation,
+            };
+
+        case REMEMBER_LAST_DONATION_VALUE:
+            return {
+                ...state,
+                lastRememberedDonationValue: Number(action.value),
             };
 
         default:
