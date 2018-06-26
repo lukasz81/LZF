@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import './Header.css';
 
 class Header extends Component {
+
+    handleDonateClick = () => {
+      console.log('click')
+    };
+
     render() {
         return (
                 <header className='header display--flex'>
@@ -20,7 +25,9 @@ class Header extends Component {
                         <form className={'align-self--center'}>
                             <input className={'search'} type={'search'} placeholder={'Search here'}/>
                         </form>
-                        <button className={'cta text-transform--uppercase align-self--center'}>Donate now</button>
+                        <button
+                            onClick={this.handleDonateClick}
+                            className={'cta text-transform--uppercase align-self--center'}>Donate now</button>
                     </div>
                 </header>
         );

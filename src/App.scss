@@ -116,4 +116,62 @@ input.error {
   background: var(--yellow);
 }
 
+@media only screen and (max-width: 520px) {
+  $mobile-padding: 20px;
+  .container {
+    max-width: 100%;
+    .logo {
+      width: 100px;
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    nav, form {
+      display: none;
+    }
+  }
+  .widget.display--flex, .content .container.display--flex, .footer .display--flex:not(.social) {
+    flex-direction: column;
+  }
+  .footer {
+    padding: $mobile-padding;
+  }
+  .content {
+    padding: $mobile-padding;
+    img {
+      width: 100%
+    }
+    button.cta {
+      margin: 10px 10px 10px 0;
+    }
+  }
+  .widget {
+    width: 100%;
+    .form-container {
+      width: 100%;
+      form {
+        padding: 0 $mobile-padding;
+        font-size: 14px;
+        label, .radio-label span, span {
+          font-size: 16px;
+          margin: 0 5px;
+        }
+      }
+      .donation-input {
+        margin: 0 3px;
+        font-size: 16px;
+      }
+    }
+    .image-container {
+      width: 100%;
+      margin: 20px 0 0 0;
+      img {
+        width: 100%;
+        height: auto;
+        margin: -10% 0px;
+      }
+    }
+  }
+}
+
 

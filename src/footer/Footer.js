@@ -21,7 +21,7 @@ class Footer extends Component {
                     </ul>
                     <ul>
                         <li><h4 className={'text-transform--uppercase'}>Follow us</h4></li>
-                        <div className={'display--flex'}>
+                        <div className={'display--flex social'}>
                             <li><a href={'./'}><img alt={'Facebook'} src={'./images/facebook-logo.svg'}/></a></li>
                             <li><a href={'./'}><img alt={'Pinterest'} src={'./images/pinterest-logo.svg'}/></a></li>
                             <li><a href={'./'}><img alt={'Twitter'} src={'./images/twitter-logo.svg'}/></a></li>

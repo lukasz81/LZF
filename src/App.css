@@ -89,3 +89,44 @@ a {
 input.error {
   box-shadow: 0 0 20px var(--yellow);
   background: var(--yellow); }
+
+@media only screen and (max-width: 520px) {
+  .container {
+    max-width: 100%; }
+    .container .logo {
+      width: 100px;
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat; }
+    .container nav, .container form {
+      display: none; }
+  .widget.display--flex, .content .container.display--flex, .footer .display--flex:not(.social) {
+    flex-direction: column; }
+  .footer {
+    padding: 20px; }
+  .content {
+    padding: 20px; }
+    .content img {
+      width: 100%; }
+    .content button.cta {
+      margin: 10px 10px 10px 0; }
+  .widget {
+    width: 100%; }
+    .widget .form-container {
+      width: 100%; }
+      .widget .form-container form {
+        padding: 0 20px;
+        font-size: 14px; }
+        .widget .form-container form label, .widget .form-container form .radio-label span, .widget .form-container form span {
+          font-size: 16px;
+          margin: 0 5px; }
+      .widget .form-container .donation-input {
+        margin: 0 3px;
+        font-size: 16px; }
+    .widget .image-container {
+      width: 100%;
+      margin: 20px 0 0 0; }
+      .widget .image-container img {
+        width: 100%;
+        height: auto;
+        margin: -10% 0px; } }
