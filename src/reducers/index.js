@@ -3,7 +3,8 @@ import {
     ANIMAL_TYPE,
     SET_DONATION_VALUE,
     SET_TO_REGULAR_DONATION,
-    REMEMBER_LAST_DONATION_VALUE
+    REMEMBER_LAST_DONATION_VALUE,
+    SUBMIT_DONATION
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -47,6 +48,12 @@ export default function editFormReducer(state=initialState, action) {
             return {
                 ...state,
                 lastRememberedDonationValue: Number(action.value),
+            };
+
+        case SUBMIT_DONATION:
+            return {
+                ...state,
+                submitValues: action.submitValues
             };
 
         default:

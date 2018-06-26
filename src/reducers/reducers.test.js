@@ -95,4 +95,13 @@ describe('Testing handling reducers', () => {
         })
     });
 
+    it('shoule handle editFormReducer SUBMIT_DONATION', () => {
+        expect(editFormReducer([], {
+            type: types.SUBMIT_DONATION,
+            submitValues: {'a':100}
+        })).toEqual({
+            submitValues: {'a':100}
+        })
+    });
+
 });

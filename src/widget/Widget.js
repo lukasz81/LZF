@@ -5,7 +5,8 @@ import {
     changeAnimalType,
     setDonationValues,
     setToRegularDonations,
-    rememberLastDonationValue
+    rememberLastDonationValue,
+    submitDonation
 } from '../actions';
 import './Widget.css';
 
@@ -43,7 +44,8 @@ export class Widget extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        alert(`State: ${JSON.stringify(this.props)}`);
+        //alert(`State: ${JSON.stringify(this.props)}`);
+        this.props.submitDonation(this.props.submitValues)
     };
 
     render() {
@@ -119,7 +121,12 @@ const mapStateToProps = state => {
         donation: state.donation,
         isUserSettingIllegalManualValue: state.isUserSettingIllegalManualValue,
         isRegularDonation: state.isRegularDonation,
-        lastRememberedDonationValue: state.lastRememberedDonationValue
+        lastRememberedDonationValue: state.lastRememberedDonationValue,
+        submitValues: {
+            animal: state.animal,
+            value: state.donation ? state.donation.value : DONATION_VALUES.defaultValue,
+            isRegularDonation: state.isRegularDonation
+        }
     }
 };
 
@@ -127,7 +134,8 @@ const mapDispatchToProps = dispatch => ({
     changeAnimalType: animal => dispatch(changeAnimalType(animal)),
     setDonationValues: donation => dispatch(setDonationValues(donation)),
     setToRegularDonations: isSet => dispatch(setToRegularDonations(isSet)),
-    rememberLastDonationValue: value => dispatch(rememberLastDonationValue(value))
+    rememberLastDonationValue: value => dispatch(rememberLastDonationValue(value)),
+    submitDonation: submitValues => dispatch(submitDonation({...submitValues}))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Widget);

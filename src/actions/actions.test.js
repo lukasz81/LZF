@@ -58,4 +58,17 @@ describe('Redux actions', () => {
 
     });
 
+    it('should create an action to submitDonation', () => {
+
+        const expectedAction = [{
+            type: types.SUBMIT_DONATION,
+            submitValues: {animal: 'lion', value: 6, isRegularDonation: false}
+        }];
+        const store = mockStore();
+
+        store.dispatch(actions.submitDonation({animal: 'lion', value: 6, isRegularDonation: false}));
+        expect(store.getActions()).toEqual(expectedAction);
+
+    });
+
 });
