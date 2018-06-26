@@ -31,18 +31,13 @@ export class Widget extends Component {
         this.props.setToRegularDonations(event.target.checked);
     };
 
-    resetRadioButtons = value => {
-        this.props.setDonationValues({value: value, isSetManually: false});
-    };
-
-    //setState is async. Had to move the checking method to a function as the update to the state was step behind
     checkUpdatedValues = inputValue => {
-        let {value,isSetManually} = this.props.donation;
+        let {value,isSetManually} = this.props.donation ? this.props.donation : {value: DONATION_VALUES.defaultValue, isSetManually: true};
         return inputValue === value && !isSetManually
     };
 
-    reset = () => {
-        let {value,isSetManually} = this.props.donation;
+    showExpectedValue = () => {
+        let {value,isSetManually} = this.props.donation ? this.props.donation : {value: DONATION_VALUES.defaultValue, isSetManually: true};
         return isSetManually ? Number(value) : ''
     };
 
@@ -52,7 +47,7 @@ export class Widget extends Component {
     };
 
     render() {
-        let {state} = this.props;
+        let state = this.props;
         return (
             <React.Fragment>
                 <h2 className={'text-transform--uppercase text-align--center text-weight--bold page-header'}>Donate today</h2>
@@ -63,7 +58,9 @@ export class Widget extends Component {
                         <form onSubmit={this.handleSubmit}>
                             <div className={'display--flex space-between'}>
                                 <span className={'align-self--center'}>I want to help:</span>
-                                <select className={'select donation-input'} value={state.animal} onChange={this.handleSelectChange}>
+                                <select className={'select donation-input'}
+                                        value={state.animal}
+                                        onChange={this.handleSelectChange}>
                                     <option value="giraffe">a giraffe</option>
                                     <option value="rhino">a rhino</option>
                                     <option value="tiger">a tiger</option>
@@ -71,28 +68,31 @@ export class Widget extends Component {
                             </div>
                             <span className={'donation-span'}>I want to donate:</span>
                             <div className={'display--flex space-between'}>
-                                {DONATION_VALUES.values.map((value,i) => {
+                                {DONATION_VALUES.values.map( value => {
                                     return (
-                                        <label key={i} className={`radio-label display--inline-block text-align--center donation-input is-checked-${this.checkUpdatedValues(value)}`}>
-                                            <input type="radio"
+                                        <label key={value}
+                                               className={`radio-label display--inline-block text-align--center donation-input is-checked-${this.checkUpdatedValues(value)}`}>
+                                            <input className={'radio'} type='radio'
                                                    value={value}
                                                    onChange={this.handleDonationChange}
-                                                   checked={this.checkUpdatedValues(value)}/>
+                                                   checked={this.checkUpdatedValues(value)}
+                                            />
                                             <span>£{value}</span>
                                         </label>
                                     )
                                 })}
                                 <span className={'align-self--center'}>Or</span>
-                                <input className={state.isUserSettingIllegalManualValue ? 'error donation-input' : 'donation-input'}
+                                <input className={state.isUserSettingIllegalManualValue ? 'error donation-input manual-input' : 'donation-input manual-input'}
                                        type="number"
                                        min='11'
-                                       value={this.reset()}
+                                       value={this.showExpectedValue()}
                                        placeholder={'£'}
                                        onChange={this.handleManualInput}/>
                             </div>
                             <div>
                                 <label>
                                     <input type="checkbox"
+                                           className={'checkbox'}
                                            onChange={this.handleCheckBoxChange}
                                            checked={state.isRegularDonation}/>
                                     <span className={'donation-span'}>I want to do a monthly donation</span>
@@ -115,9 +115,8 @@ export class Widget extends Component {
 
 const mapStateToProps = state => {
     return {
-        state,
         animal: state.animal,
-        donation: state.selectedDonation,
+        donation: state.donation,
         isUserSettingIllegalManualValue: state.isUserSettingIllegalManualValue,
         isRegularDonation: state.isRegularDonation,
         lastRememberedDonationValue: state.lastRememberedDonationValue

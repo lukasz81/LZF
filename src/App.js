@@ -5,7 +5,7 @@ import Content from './content/Content';
 import Footer from './footer/Footer';
 import './App.css';
 
-class App extends Component {
+export class App extends Component {
   render() {
     return (
       <div className="App">

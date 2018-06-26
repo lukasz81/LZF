@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {createStore,applyMiddleware,compose} from 'redux';
-import submitForm from './reducers'
+import editForm from './reducers'
 import App from './App';
 
 const logger = store => next => action => {
@@ -16,7 +16,7 @@ const logger = store => next => action => {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(submitForm,composeEnhancers(applyMiddleware(logger)));
+const store = createStore(editForm,composeEnhancers(applyMiddleware(logger)));
 
 ReactDOM.render(
     <Provider store={store}>

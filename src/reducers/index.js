@@ -8,7 +8,7 @@ import {
 
 const initialState = {
     animal: 'giraffe',
-    selectedDonation: {
+    donation: {
         value: DONATION_VALUES.defaultValue,
         isSetManually: false
     },
@@ -30,7 +30,7 @@ export default function editFormReducer(state=initialState, action) {
             let {value,isSetManually} = action.donation;
             return {
                 ...state,
-                selectedDonation: {
+                donation: {
                     value: value !== '' ? Number(value) : '',
                     isSetManually: isSetManually
                 },
