@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './Header.css';
+import {
+    submitDonation
+} from "../actions";
+import {DONATION_VALUES} from "../widget/donationValues";
 
-class Header extends Component {
+export class Header extends Component {
 
     handleDonateClick = () => {
-      console.log('click')
+        this.props.submitDonation(this.props.submitValues)
     };
 
     render() {
@@ -34,4 +39,18 @@ class Header extends Component {
     }
 }
 
-export default Header;
+const mapStateToProps = state => {
+    return {
+        submitValues: {
+            animal: state.animal,
+            value: state.donation ? state.donation.value : DONATION_VALUES.defaultValue,
+            isRegularDonation: state.isRegularDonation
+        }
+    }
+};
+
+const mapDispatchToProps = dispatch => ({
+    submitDonation: submitValues => dispatch(submitDonation({...submitValues}))
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(Header);

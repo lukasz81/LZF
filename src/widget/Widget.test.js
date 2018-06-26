@@ -85,8 +85,14 @@ describe('<Widget/>', () => {
             container.find('.manual-input').simulate('change', event);
             expect(handleManualInput.mock.calls.length).toBe(1);
         });
+    });
 
-    })
-
+    it('calls submitDonation when submiting form', () => {
+        const event = {preventDefault: () => {}};
+        const handleSubmit = jest.fn();
+        const container = shallow(<Widget submitDonation={handleSubmit}/>);
+        container.find('.form').simulate('submit',event);
+        expect(handleSubmit.mock.calls.length).toBe(1);
+    });
 
 });

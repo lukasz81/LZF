@@ -44,7 +44,6 @@ export class Widget extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        //alert(`State: ${JSON.stringify(this.props)}`);
         this.props.submitDonation(this.props.submitValues)
     };
 
@@ -57,7 +56,7 @@ export class Widget extends Component {
                 <section className={'widget display--flex space-between'}>
                     <div className={'form-container'}>
                         <h3 className={'text-transform--uppercase text-align--center text-weight--bold form-header'}>Make a donation</h3>
-                        <form onSubmit={this.handleSubmit}>
+                        <form className={'form'} onSubmit={this.handleSubmit}>
                             <div className={'display--flex space-between'}>
                                 <span className={'align-self--center'}>I want to help:</span>
                                 <select className={'select donation-input'}
