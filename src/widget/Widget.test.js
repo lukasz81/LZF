@@ -8,6 +8,7 @@ import App from '../App';
 import * as actions from '../actions';
 import * as actionTypes from '../actions/actionTypes';
 import {initialState} from '../initialState';
+import {DONATION_VALUES} from './donationValues';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -40,7 +41,7 @@ describe('<Widget/>', () => {
         expect(mockHandleSelectChange.mock.calls.length).toBe(1);
     });
 
-    it('check "changeAnimalType" action on dispatching', () => {
+    it('checks "changeAnimalType" action on dispatching', () => {
         const animalType = 'rhino';
         mockedStore.dispatch(actions.changeAnimalType(animalType));
         expect(mockedStore.getActions()[0].animal).toEqual(animalType);
@@ -98,7 +99,7 @@ describe('<Widget/>', () => {
 
     //// checkUpdatedValues
 
-    describe('checkUpdatedValues method', () => {
+    describe('checkUpdatedValues component method', () => {
 
         it('should call checkUpdatedValues with passed value of 3', () => {
             const container = shallow(<Widget donation={{value:5,isSetManually:true}}/>);
@@ -136,4 +137,62 @@ describe('<Widget/>', () => {
         });
 
     });
+
+    describe('showExpectedValue component method', () => {
+
+        it('should call checkUpdatedValues with passed value of 3', () => {
+            const expected = 5;
+            const container = shallow(<Widget donation={{value:expected,isSetManually:true}}/>);
+            const instance = container.instance();
+            jest.spyOn(instance, 'showExpectedValue');
+            let fn = instance.showExpectedValue();
+            expect(fn).toEqual(expected);
+        });
+
+        it('should convert string to number', () => {
+            const expected = '5';
+            const container = shallow(<Widget donation={{value:expected,isSetManually:true}}/>);
+            const instance = container.instance();
+            jest.spyOn(instance, 'showExpectedValue');
+            let fn = instance.showExpectedValue();
+            expect(fn).toEqual(Number(expected));
+        });
+
+        it('should return empty string as a result when isSetManually is "false"', () => {
+            const container = shallow(<Widget donation={{value:5,isSetManually:false}}/>);
+            const instance = container.instance();
+            jest.spyOn(instance, 'showExpectedValue');
+            let fn = instance.showExpectedValue();
+            expect(fn).toEqual('');
+        });
+
+    });
+
+    it('should have prop checked equal true when input value matches current state donation value', () => {
+        const container = shallow(<Widget donation={{value:3,isSetManually:false}}/>);
+        const dValues = DONATION_VALUES.values;
+        const currentValue = initialState.donation.value;
+        dValues.forEach( (value,index) => {
+            if (currentValue === value) {
+                expect(container.find('.radio-label').at(index).find('input').prop('checked')).toEqual(true)
+            } else {
+                expect(container.find('.radio-label').at(index).find('input').prop('checked')).toEqual(false)
+            }
+        });
+    });
+
+    // it('should toggle the value checked on click', () => {
+    //     const container = shallow(<Widget rememberLastDonationValue={()=>{}} setDonationValues={()=>{}} donation={{value:3,isSetManually:false}}/>);
+    //     const radioLabel = container.find('.radio-label');
+    //     console.log(radioLabel.at(1).find('input').prop('checked'));
+    //
+    //     radioLabel.at(1).find('input').simulate('change', { target: {checked: true} });
+    //     console.log(radioLabel.at(1).find('input').prop('checked'));
+    //     radioLabel.forEach( (label, index) => {
+    //         label.find('input').simulate('change',{ target: {checked: true} });
+    //         console.log(label.find('.radio').debug());
+    //     });
+    //
+    // });
+
 });

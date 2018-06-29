@@ -34,12 +34,12 @@ export class Widget extends Component {
 
     checkUpdatedValues = inputValue => {
         let {value,isSetManually} = this.props.donation;
-        return inputValue === value && !isSetManually
+        return inputValue === value && !isSetManually;
     };
 
     showExpectedValue = () => {
         let {value,isSetManually} = this.props.donation;
-        return isSetManually ? Number(value) : ''
+        return isSetManually ? Number(value) : '';
     };
 
     handleSubmit = event => {
