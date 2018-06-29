@@ -6,17 +6,7 @@ import {
     REMEMBER_LAST_DONATION_VALUE,
     SUBMIT_DONATION
 } from '../actions/actionTypes';
-
-const initialState = {
-    animal: 'giraffe',
-    donation: {
-        value: DONATION_VALUES.defaultValue,
-        isSetManually: false
-    },
-    isUserSettingIllegalManualValue: false,
-    isRegularDonation: true,
-    lastRememberedDonationValue: null
-};
+import {initialState} from '../initialState';
 
 export default function editFormReducer(state=initialState, action) {
     switch (action.type) {
@@ -53,7 +43,11 @@ export default function editFormReducer(state=initialState, action) {
         case SUBMIT_DONATION:
             return {
                 ...state,
-                submitValues: action.submitValues
+                submitValues: {
+                    animal: action.submitValues.animal,
+                    amount: action.submitValues.donation.value,
+                    isRegularDonation: action.submitValues.isRegularDonation
+                }
             };
 
         default:

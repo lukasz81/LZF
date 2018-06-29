@@ -33,18 +33,18 @@ export class Widget extends Component {
     };
 
     checkUpdatedValues = inputValue => {
-        let {value,isSetManually} = this.props.donation ? this.props.donation : {value: DONATION_VALUES.defaultValue, isSetManually: true};
+        let {value,isSetManually} = this.props.donation;
         return inputValue === value && !isSetManually
     };
 
     showExpectedValue = () => {
-        let {value,isSetManually} = this.props.donation ? this.props.donation : {value: DONATION_VALUES.defaultValue, isSetManually: true};
+        let {value,isSetManually} = this.props.donation;
         return isSetManually ? Number(value) : ''
     };
 
     handleSubmit = event => {
         event.preventDefault();
-        this.props.submitDonation(this.props.submitValues)
+        this.props.submitDonation(this.props);
     };
 
     render() {
@@ -120,12 +120,7 @@ const mapStateToProps = state => {
         donation: state.donation,
         isUserSettingIllegalManualValue: state.isUserSettingIllegalManualValue,
         isRegularDonation: state.isRegularDonation,
-        lastRememberedDonationValue: state.lastRememberedDonationValue,
-        submitValues: {
-            animal: state.animal,
-            value: state.donation ? state.donation.value : DONATION_VALUES.defaultValue,
-            isRegularDonation: state.isRegularDonation
-        }
+        lastRememberedDonationValue: state.lastRememberedDonationValue
     }
 };
 
@@ -134,7 +129,7 @@ const mapDispatchToProps = dispatch => ({
     setDonationValues: donation => dispatch(setDonationValues(donation)),
     setToRegularDonations: isSet => dispatch(setToRegularDonations(isSet)),
     rememberLastDonationValue: value => dispatch(rememberLastDonationValue(value)),
-    submitDonation: submitValues => dispatch(submitDonation({...submitValues}))
+    submitDonation: state => dispatch(submitDonation(state))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Widget);

@@ -4,12 +4,11 @@ import './Header.css';
 import {
     submitDonation
 } from "../actions";
-import {DONATION_VALUES} from "../widget/donationValues";
 
 export class Header extends Component {
 
     handleDonateClick = () => {
-        this.props.submitDonation(this.props.submitValues)
+        this.props.submitDonation(this.props.state)
     };
 
     render() {
@@ -17,7 +16,10 @@ export class Header extends Component {
                 <header className='header display--flex'>
                     <div className={'container display--flex'}>
                         <h1 className="logo text--indent align-self--center">
-                            <a className={'display--block'} title={'Little Zebra Foundation'} href={'./'}>Little Zebra Foundation</a>
+                            <a className={'display--block'}
+                               title={'Little Zebra Foundation'}
+                               href={'./'}>Little Zebra Foundation
+                            </a>
                         </h1>
                         <nav className={'align-self--center'}>
                             <ul className={'display--flex text-transform--capitalize'}>
@@ -32,7 +34,9 @@ export class Header extends Component {
                         </form>
                         <button
                             onClick={this.handleDonateClick}
-                            className={'cta text-transform--uppercase align-self--center'}>Donate now</button>
+                            className={'cta text-transform--uppercase align-self--center'}>
+                            Donate now
+                        </button>
                     </div>
                 </header>
         );
@@ -41,16 +45,12 @@ export class Header extends Component {
 
 const mapStateToProps = state => {
     return {
-        submitValues: {
-            animal: state.animal,
-            value: state.donation ? state.donation.value : DONATION_VALUES.defaultValue,
-            isRegularDonation: state.isRegularDonation
-        }
+        state: state
     }
 };
 
 const mapDispatchToProps = dispatch => ({
-    submitDonation: submitValues => dispatch(submitDonation({...submitValues}))
+    submitDonation: state => dispatch(submitDonation(state))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Header);

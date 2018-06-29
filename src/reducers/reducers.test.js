@@ -1,22 +1,14 @@
 import * as types from '../actions/actionTypes';
 import editFormReducer from './index';
 import {DONATION_VALUES} from "../widget/donationValues";
+import {initialState} from '../initialState';
 
 describe('Testing reducers initial state', () => {
 
     describe('editFormReducer reducer initial state', () => {
         it('should return the initial state', () => {
             expect(editFormReducer(undefined, {})).toEqual(
-                {
-                    animal: 'giraffe',
-                    donation: {
-                        value: DONATION_VALUES.defaultValue,
-                        isSetManually: false
-                    },
-                    isUserSettingIllegalManualValue: false,
-                    isRegularDonation: true,
-                    lastRememberedDonationValue: null
-                }
+                initialState
             )
         });
     });
@@ -77,7 +69,7 @@ describe('Testing handling reducers', () => {
         })
     });
 
-    it('shoule handle editFormReducer SET_TO_REGULAR_DONATION', () => {
+    it('should handle editFormReducer SET_TO_REGULAR_DONATION', () => {
         expect(editFormReducer([], {
             type: types.SET_TO_REGULAR_DONATION,
             isRegularDonation: true
@@ -86,7 +78,7 @@ describe('Testing handling reducers', () => {
         })
     });
 
-    it('shoule handle editFormReducer REMEMBER_LAST_DONATION_VALUE', () => {
+    it('should handle editFormReducer REMEMBER_LAST_DONATION_VALUE', () => {
         expect(editFormReducer([], {
             type: types.REMEMBER_LAST_DONATION_VALUE,
             value: 5
@@ -95,12 +87,22 @@ describe('Testing handling reducers', () => {
         })
     });
 
-    it('shoule handle editFormReducer SUBMIT_DONATION', () => {
+    it('should handle editFormReducer SUBMIT_DONATION', () => {
         expect(editFormReducer([], {
             type: types.SUBMIT_DONATION,
-            submitValues: {'a':100}
+            submitValues: {
+                animal: 'dog',
+                donation: {
+                    value: 5
+                },
+                isRegularDonation: true
+            }
         })).toEqual({
-            submitValues: {'a':100}
+            submitValues: {
+                animal: 'dog',
+                amount: 5,
+                isRegularDonation: true
+            }
         })
     });
 
