@@ -18,9 +18,15 @@
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --coverage --env=jsdom",
     "test:watch": "npm run test --watch",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/index.js"
+    ]
   },
   "devDependencies": {
     "enzyme": "^3.3.0",

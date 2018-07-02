@@ -181,18 +181,4 @@ describe('<Widget/>', () => {
         });
     });
 
-    // it('should toggle the value checked on click', () => {
-    //     const container = shallow(<Widget rememberLastDonationValue={()=>{}} setDonationValues={()=>{}} donation={{value:3,isSetManually:false}}/>);
-    //     const radioLabel = container.find('.radio-label');
-    //     console.log(radioLabel.at(1).find('input').prop('checked'));
-    //
-    //     radioLabel.at(1).find('input').simulate('change', { target: {checked: true} });
-    //     console.log(radioLabel.at(1).find('input').prop('checked'));
-    //     radioLabel.forEach( (label, index) => {
-    //         label.find('input').simulate('change',{ target: {checked: true} });
-    //         console.log(label.find('.radio').debug());
-    //     });
-    //
-    // });
-
 });

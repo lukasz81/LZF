@@ -8,7 +8,7 @@ import {
 export class Header extends Component {
 
     handleDonateClick = () => {
-        this.props.submitDonation(this.props.state)
+        this.props.submitDonation(this.props.submitValues)
     };
 
     render() {
@@ -34,7 +34,7 @@ export class Header extends Component {
                         </form>
                         <button
                             onClick={this.handleDonateClick}
-                            className={'cta text-transform--uppercase align-self--center'}>
+                            className={`${this.props.isUserSettingIllegalManualValue ? 'error' : ''} cta text-transform--uppercase align-self--center`}>
                             Donate now
                         </button>
                     </div>
@@ -45,7 +45,8 @@ export class Header extends Component {
 
 const mapStateToProps = state => {
     return {
-        state: state
+        submitValues: state,
+        isUserSettingIllegalManualValue: state.isUserSettingIllegalManualValue
     }
 };
 
