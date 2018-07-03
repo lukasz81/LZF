@@ -32,5 +32,9 @@ I have covered tests for actions, reducers and widget components.
 
 * Add more media queries for different sizes of the screen.
 
+## Sketch export
+
+<img src="https://szczepan.me/extras/little_zebra_foundation/little_zebra.jpg" alt="Little Zebra Foundation" />
+
 
 
