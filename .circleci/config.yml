@@ -2,8 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:7.7.4
-      - image: mongo:3.4.4
+      - image: circleci/node:latest
     steps:
       - checkout
 #      - run:
@@ -15,9 +14,12 @@ jobs:
 #      - run:
 #          name: Install stable Node version Using n Module
 #          command: 'sudo n stable'
-      - run:
-          name: update-npm
-          command: 'sudo npm install -g npm@5'
+#      - run:
+#          name: update-npm
+#          command: 'sudo npm install -g npm@5'
+       - run:
+           name: install-npm
+           command: npm install
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - save_cache:
