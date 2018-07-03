@@ -2,6 +2,10 @@
 
 This is a React.js single page app that uses Redux to hold state of the widget (form).
 
+## Coverage
+
+[![Coverage Status](https://coveralls.io/repos/github/lukasz81/LZF/badge.svg?branch=master)](https://coveralls.io/github/lukasz81/LZF?branch=master)
+
 ## TL;DR
 
 To get started right away:
@@ -29,7 +33,4 @@ I have covered tests for actions, reducers and widget components.
 * Add more media queries for different sizes of the screen.
 
 
-[![Coverage Status](https://coveralls.io/repos/github/lukasz81/LZF/badge.svg?branch=master)](https://coveralls.io/github/lukasz81/LZF?branch=master)
-
-[![CircleCI](https://coveralls.io/repos/github/lukasz81/LZF/badge.svg?branch=master)](https://coveralls.io/github/lukasz81/LZF?branch=master)
 
