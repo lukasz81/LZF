@@ -7,11 +7,14 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Clear cache
-          command: 'npm cache clean --force'
+          name: Clean node Cache
+          command: 'sudo npm cache clean --force'
       - run:
           name: Update-npm
           command: 'sudo npm install -g npm@6'
+      - run:
+          name: Install stable Node version Using n Module
+          command: 'sudo n stable'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - save_cache:
