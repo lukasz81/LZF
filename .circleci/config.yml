@@ -10,8 +10,8 @@ jobs:
           name: Clean node Cache
           command: 'sudo npm cache clean --force'
       - run:
-          name: Update-npm
-          command: 'sudo npm install -g npm@6'
+          name: Install n module
+          command: 'sudo npm install -g n'
       - run:
           name: Install stable Node version Using n Module
           command: 'sudo n stable'
