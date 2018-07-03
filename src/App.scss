@@ -152,6 +152,9 @@ input.error {
       form {
         padding: 0 $mobile-padding;
         font-size: 14px;
+        input[type=number] {
+          width: 100%;
+        }
         label, .radio-label span, span {
           font-size: 16px;
           margin: 0 5px;
