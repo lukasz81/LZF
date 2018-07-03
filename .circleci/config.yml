@@ -6,15 +6,18 @@ jobs:
       - image: mongo:3.4.4
     steps:
       - checkout
+#      - run:
+#          name: Clean node Cache
+#          command: 'sudo npm cache clean --force'
+#      - run:
+#          name: Install n module
+#          command: 'sudo npm install -g n'
+#      - run:
+#          name: Install stable Node version Using n Module
+#          command: 'sudo n stable'
       - run:
-          name: Clean node Cache
-          command: 'sudo npm cache clean --force'
-      - run:
-          name: Install n module
-          command: 'sudo npm install -g n'
-      - run:
-          name: Install stable Node version Using n Module
-          command: 'sudo n stable'
+          name: update-npm
+          command: 'sudo npm install -g npm@5'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - save_cache:
