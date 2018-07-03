@@ -15,9 +15,6 @@ jobs:
           command: 'sudo npm install -g npm'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: Install-npm-wee
-          command: npm install
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - save_cache:
