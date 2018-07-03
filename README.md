@@ -27,3 +27,6 @@ I have covered tests for actions, reducers and widget components.
 ## TODO
 
 * Add more media queries for different sizes of the screen.
+
+
+[![Coverage Status](https://coveralls.io/repos/github/lukasz81/LZF/badge.svg?branch=master)](https://coveralls.io/github/lukasz81/LZF?branch=master)
