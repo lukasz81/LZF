@@ -2,7 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9aeae2a7-853e-40ad-a8c4-79ecb8350f17" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/config.json" afterPath="$PROJECT_DIR$/config.json" />
+      <change beforePath="$PROJECT_DIR$/coverage/clover.xml" afterPath="$PROJECT_DIR$/coverage/clover.xml" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/index.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/index.html" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/App.js.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/App.js.html" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/actions/actionTypes.js.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/actions/actionTypes.js.html" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/actions/index.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/actions/index.html" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/actions/index.js.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/actions/index.js.html" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/content/Content.js.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/content/Content.js.html" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/content/index.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/content/index.html" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/footer/Footer.js.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/footer/Footer.js.html" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/footer/index.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/footer/index.html" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/header/Header.js.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/header/Header.js.html" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/header/index.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/header/index.html" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/index.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/index.html" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/initialState.js.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/initialState.js.html" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/reducers/index.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/reducers/index.html" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/reducers/index.js.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/reducers/index.js.html" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/widget/Widget.js.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/widget/Widget.js.html" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/widget/donationValues.js.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/widget/donationValues.js.html" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/widget/index.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/widget/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -166,8 +186,8 @@
           <file leaf-file-name="config.json" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/config.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="20">
-                  <caret line="1" column="45" lean-forward="false" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
+                <state relative-caret-position="60">
+                  <caret line="3" column="32" lean-forward="true" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
                   <folding />
                 </state>
               </provider>
@@ -340,20 +360,7 @@
             <path>
               <item name="little_zebra_foundation" type="b2602c69:ProjectViewProjectNode" />
               <item name="little_zebra_foundation" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="little_zebra_foundation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="little_zebra_foundation" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="coveralls" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="little_zebra_foundation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="little_zebra_foundation" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="coveralls" type="462c0819:PsiDirectoryNode" />
-              <item name="bin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -405,12 +412,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1529232989875</updated>
-      <workItem from="1529232991174" duration="174768000" />
+      <workItem from="1529232991174" duration="175244000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174768000" />
+    <option name="totallyTimeSpent" value="175244000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-601" y="-1440" width="2560" height="1440" extended-state="0" />
@@ -822,8 +829,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="1" column="45" lean-forward="false" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
+        <state relative-caret-position="60">
+          <caret line="3" column="32" lean-forward="true" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
           <folding />
         </state>
       </provider>
