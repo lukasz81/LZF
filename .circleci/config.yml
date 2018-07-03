@@ -8,7 +8,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: update-npm
+          name: Update-npm
           command: 'sudo npm install -g npm@latest'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
@@ -17,10 +17,10 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          name: test
-          command: npm test
+          name: Test
+          command: npm run test-ci
       - run:
-          name: code-coverage
+          name: Code-coverage
           command: './node_modules/.bin/nyc report --reporter=text-lcov'
       - store_artifacts:
           path: test-results.xml
