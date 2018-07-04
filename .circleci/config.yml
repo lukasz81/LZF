@@ -17,10 +17,7 @@ jobs:
             - ./node_modules
       - run:
           name: Test
-          command: npm run test
-      - run:
-          name: Code-coverage
-          command: './node_modules/coveralls/bin/coveralls.js'
+          command: npm run test-ci
       - store_artifacts:
           path: test-results.xml
           prefix: tests
