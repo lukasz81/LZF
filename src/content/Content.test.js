@@ -8,7 +8,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('<Content/>', () => {
 
-    it('renders Header component in App', () => {
+    it('renders Content component in App', () => {
         const container = shallow(<App/>);
         expect(container.find(ConnectedContent).length).toEqual(1);
     });

@@ -24,161 +24,161 @@ describe('<Widget/>', () => {
         expect(container.find(ConnectedWidget).length).toEqual(1);
     });
 
-    it('checks if element has ".widget" className', () => {
-        const wrapper = mount(widget);
-        expect( wrapper.find('.widget').length).toEqual(1);
-        wrapper.unmount();
-    });
-
-    it('calls handleSelectChange when simulating change on select', () => {
-        const animalType = 'rhino';
-        const event = {target: {value: animalType}};
-        const mockHandleSelectChange = jest.fn();
-        const container = shallow(<Widget
-            donation={{value:5,isSetManually:true}}
-            changeAnimalType={mockHandleSelectChange}/>);
-        container.find('.select').simulate('change', event);
-        expect(mockHandleSelectChange.mock.calls.length).toBe(1);
-    });
-
-    it('checks "changeAnimalType" action on dispatching', () => {
-        const animalType = 'rhino';
-        mockedStore.dispatch(actions.changeAnimalType(animalType));
-        expect(mockedStore.getActions()[0].animal).toEqual(animalType);
-        expect(mockedStore.getActions()[0].type).toEqual(actionTypes.ANIMAL_TYPE)
-    });
-
-    it('calls handleDonationChange when simulating change on select\'', () => {
-        const mockHandleDonationChange = jest.fn();
-        const container = shallow(
-            <Widget rememberLastDonationValue={mockHandleDonationChange}
-                    donation={{value:5,isSetManually:true}}
-                    setDonationValues={mockHandleDonationChange}/>
-        );
-        const event = {target:{value:3}};
-        container.find('.radio').first().simulate('change', event);
-        expect(mockHandleDonationChange.mock.calls.length).toBe(2);
-    });
-
-    it('check "setDonationValues" action on dispatching', () => {
-        let expected = {
-            value: 10,
-            isSetManually: true
-        };
-        // initiate a new store to reset it as per: https://github.com/reduxjs/redux/issues/1183
-        const mockedStore = mockStore(initialState);
-        mockedStore.dispatch(actions.setDonationValues(expected));
-        expect(mockedStore.getActions()[0].donation).toEqual(expected);
-        expect(mockedStore.getActions()[0].type).toEqual(actionTypes.SET_DONATION_VALUE)
-    });
-
-    it('calls setDonationValues when simulating change on manual input', () => {
-        const event = {target: {value: null}};
-        const handleManualInput = jest.fn();
-        const container = shallow(<Widget
-            donation={{value:5,isSetManually:true}}
-            setDonationValues={handleManualInput}/>);
-        container.find('.manual-input').simulate('change', event);
-        expect(handleManualInput.mock.calls.length).toBe(1);
-    });
-
-    it('calls submitDonation action when submitting the form', () => {
-        const mockedStore = mockStore(initialState);
-        const actions = mockedStore.getActions();
-        const event = {preventDefault: () => {}};
-        const handleSubmit = jest.fn();
-        const container = shallow(<ConnectedWidget
-            store={mockedStore}
-            submitDonation={handleSubmit}/>);
-        expect(actions[0]).toBe(undefined);
-        container.dive().find('.form').simulate('submit', event);
-        expect(actions[0].type).toBe(actionTypes.SUBMIT_DONATION);
-    });
-
-
-
-    //// checkUpdatedValues
-
-    describe('checkUpdatedValues component method', () => {
-
-        it('should call checkUpdatedValues with passed value of 3', () => {
-            const container = shallow(<Widget donation={{value:5,isSetManually:true}}/>);
-            const instance = container.instance();
-            jest.spyOn(instance, 'checkUpdatedValues');
-            instance.checkUpdatedValues(3);
-            expect(instance.checkUpdatedValues).toHaveBeenCalledWith(3);
-        });
-
-        it('should call checkUpdatedValues and return "true" when passed value = props value && isSetManually equals "false', () => {
-            const value = 5;
-            const container = shallow(<Widget donation={{value: value, isSetManually: false}}/>);
-            const instance = container.instance();
-            jest.spyOn(instance, 'checkUpdatedValues');
-            let fn = instance.checkUpdatedValues(value);
-            expect(fn).toEqual(true);
-        });
-
-        it('should call checkUpdatedValues and return "false" when passed value != props value && isSetManually equals "false', () => {
-            const value = 5;
-            const container = shallow(<Widget donation={{value: value, isSetManually: false}}/>);
-            const instance = container.instance();
-            jest.spyOn(instance, 'checkUpdatedValues');
-            let fn = instance.checkUpdatedValues(value - 1);
-            expect(fn).toEqual(false);
-        });
-
-        it('should call checkUpdatedValues and return "false" when passed value != props value && isSetManually equals "false', () => {
-            const value = 5;
-            const container = shallow(<Widget donation={{value: value, isSetManually: true}}/>);
-            const instance = container.instance();
-            jest.spyOn(instance, 'checkUpdatedValues');
-            let fn = instance.checkUpdatedValues(value);
-            expect(fn).toEqual(false);
-        });
-
-    });
-
-    describe('showExpectedValue component method', () => {
-
-        it('should call checkUpdatedValues with passed value of 3', () => {
-            const expected = 5;
-            const container = shallow(<Widget donation={{value:expected,isSetManually:true}}/>);
-            const instance = container.instance();
-            jest.spyOn(instance, 'showExpectedValue');
-            let fn = instance.showExpectedValue();
-            expect(fn).toEqual(expected);
-        });
-
-        it('should convert string to number', () => {
-            const expected = '5';
-            const container = shallow(<Widget donation={{value:expected,isSetManually:true}}/>);
-            const instance = container.instance();
-            jest.spyOn(instance, 'showExpectedValue');
-            let fn = instance.showExpectedValue();
-            expect(fn).toEqual(Number(expected));
-        });
-
-        it('should return empty string as a result when isSetManually is "false"', () => {
-            const container = shallow(<Widget donation={{value:5,isSetManually:false}}/>);
-            const instance = container.instance();
-            jest.spyOn(instance, 'showExpectedValue');
-            let fn = instance.showExpectedValue();
-            expect(fn).toEqual('');
-        });
-
-    });
-
-    it('should have prop checked equal true when input value matches current state donation value', () => {
-        const container = shallow(<Widget donation={{value:3,isSetManually:false}}/>);
-        const dValues = DONATION_VALUES.values;
-        const currentValue = initialState.donation.value;
-        dValues.forEach( (value,index) => {
-            if (currentValue === value) {
-                expect(container.find('.radio-label').at(index).find('input').prop('checked')).toEqual(true)
-            } else {
-                expect(container.find('.radio-label').at(index).find('input').prop('checked')).toEqual(false)
-            }
-        });
-    });
+    // it('checks if element has ".widget" className', () => {
+    //     const wrapper = mount(widget);
+    //     expect( wrapper.find('.widget').length).toEqual(1);
+    //     wrapper.unmount();
+    // });
+    //
+    // it('calls handleSelectChange when simulating change on select', () => {
+    //     const animalType = 'rhino';
+    //     const event = {target: {value: animalType}};
+    //     const mockHandleSelectChange = jest.fn();
+    //     const container = shallow(<Widget
+    //         donation={{value:5,isSetManually:true}}
+    //         changeAnimalType={mockHandleSelectChange}/>);
+    //     container.find('.select').simulate('change', event);
+    //     expect(mockHandleSelectChange.mock.calls.length).toBe(1);
+    // });
+    //
+    // it('checks "changeAnimalType" action on dispatching', () => {
+    //     const animalType = 'rhino';
+    //     mockedStore.dispatch(actions.changeAnimalType(animalType));
+    //     expect(mockedStore.getActions()[0].animal).toEqual(animalType);
+    //     expect(mockedStore.getActions()[0].type).toEqual(actionTypes.ANIMAL_TYPE)
+    // });
+    //
+    // it('calls handleDonationChange when simulating change on select\'', () => {
+    //     const mockHandleDonationChange = jest.fn();
+    //     const container = shallow(
+    //         <Widget rememberLastDonationValue={mockHandleDonationChange}
+    //                 donation={{value:5,isSetManually:true}}
+    //                 setDonationValues={mockHandleDonationChange}/>
+    //     );
+    //     const event = {target:{value:3}};
+    //     container.find('.radio').first().simulate('change', event);
+    //     expect(mockHandleDonationChange.mock.calls.length).toBe(2);
+    // });
+    //
+    // it('check "setDonationValues" action on dispatching', () => {
+    //     let expected = {
+    //         value: 10,
+    //         isSetManually: true
+    //     };
+    //     // initiate a new store to reset it as per: https://github.com/reduxjs/redux/issues/1183
+    //     const mockedStore = mockStore(initialState);
+    //     mockedStore.dispatch(actions.setDonationValues(expected));
+    //     expect(mockedStore.getActions()[0].donation).toEqual(expected);
+    //     expect(mockedStore.getActions()[0].type).toEqual(actionTypes.SET_DONATION_VALUE)
+    // });
+    //
+    // it('calls setDonationValues when simulating change on manual input', () => {
+    //     const event = {target: {value: null}};
+    //     const handleManualInput = jest.fn();
+    //     const container = shallow(<Widget
+    //         donation={{value:5,isSetManually:true}}
+    //         setDonationValues={handleManualInput}/>);
+    //     container.find('.manual-input').simulate('change', event);
+    //     expect(handleManualInput.mock.calls.length).toBe(1);
+    // });
+    //
+    // it('calls submitDonation action when submitting the form', () => {
+    //     const mockedStore = mockStore(initialState);
+    //     const actions = mockedStore.getActions();
+    //     const event = {preventDefault: () => {}};
+    //     const handleSubmit = jest.fn();
+    //     const container = shallow(<ConnectedWidget
+    //         store={mockedStore}
+    //         submitDonation={handleSubmit}/>);
+    //     expect(actions[0]).toBe(undefined);
+    //     container.dive().find('.form').simulate('submit', event);
+    //     expect(actions[0].type).toBe(actionTypes.SUBMIT_DONATION);
+    // });
+    //
+    //
+    //
+    // //// checkUpdatedValues
+    //
+    // describe('checkUpdatedValues component method', () => {
+    //
+    //     it('should call checkUpdatedValues with passed value of 3', () => {
+    //         const container = shallow(<Widget donation={{value:5,isSetManually:true}}/>);
+    //         const instance = container.instance();
+    //         jest.spyOn(instance, 'checkUpdatedValues');
+    //         instance.checkUpdatedValues(3);
+    //         expect(instance.checkUpdatedValues).toHaveBeenCalledWith(3);
+    //     });
+    //
+    //     it('should call checkUpdatedValues and return "true" when passed value = props value && isSetManually equals "false', () => {
+    //         const value = 5;
+    //         const container = shallow(<Widget donation={{value: value, isSetManually: false}}/>);
+    //         const instance = container.instance();
+    //         jest.spyOn(instance, 'checkUpdatedValues');
+    //         let fn = instance.checkUpdatedValues(value);
+    //         expect(fn).toEqual(true);
+    //     });
+    //
+    //     it('should call checkUpdatedValues and return "false" when passed value != props value && isSetManually equals "false', () => {
+    //         const value = 5;
+    //         const container = shallow(<Widget donation={{value: value, isSetManually: false}}/>);
+    //         const instance = container.instance();
+    //         jest.spyOn(instance, 'checkUpdatedValues');
+    //         let fn = instance.checkUpdatedValues(value - 1);
+    //         expect(fn).toEqual(false);
+    //     });
+    //
+    //     it('should call checkUpdatedValues and return "false" when passed value != props value && isSetManually equals "false', () => {
+    //         const value = 5;
+    //         const container = shallow(<Widget donation={{value: value, isSetManually: true}}/>);
+    //         const instance = container.instance();
+    //         jest.spyOn(instance, 'checkUpdatedValues');
+    //         let fn = instance.checkUpdatedValues(value);
+    //         expect(fn).toEqual(false);
+    //     });
+    //
+    // });
+    //
+    // describe('showExpectedValue component method', () => {
+    //
+    //     it('should call checkUpdatedValues with passed value of 3', () => {
+    //         const expected = 5;
+    //         const container = shallow(<Widget donation={{value:expected,isSetManually:true}}/>);
+    //         const instance = container.instance();
+    //         jest.spyOn(instance, 'showExpectedValue');
+    //         let fn = instance.showExpectedValue();
+    //         expect(fn).toEqual(expected);
+    //     });
+    //
+    //     it('should convert string to number', () => {
+    //         const expected = '5';
+    //         const container = shallow(<Widget donation={{value:expected,isSetManually:true}}/>);
+    //         const instance = container.instance();
+    //         jest.spyOn(instance, 'showExpectedValue');
+    //         let fn = instance.showExpectedValue();
+    //         expect(fn).toEqual(Number(expected));
+    //     });
+    //
+    //     it('should return empty string as a result when isSetManually is "false"', () => {
+    //         const container = shallow(<Widget donation={{value:5,isSetManually:false}}/>);
+    //         const instance = container.instance();
+    //         jest.spyOn(instance, 'showExpectedValue');
+    //         let fn = instance.showExpectedValue();
+    //         expect(fn).toEqual('');
+    //     });
+    //
+    // });
+    //
+    // it('should have prop checked equal true when input value matches current state donation value', () => {
+    //     const container = shallow(<Widget donation={{value:3,isSetManually:false}}/>);
+    //     const dValues = DONATION_VALUES.values;
+    //     const currentValue = initialState.donation.value;
+    //     dValues.forEach( (value,index) => {
+    //         if (currentValue === value) {
+    //             expect(container.find('.radio-label').at(index).find('input').prop('checked')).toEqual(true)
+    //         } else {
+    //             expect(container.find('.radio-label').at(index).find('input').prop('checked')).toEqual(false)
+    //         }
+    //     });
+    // });
 
 });
