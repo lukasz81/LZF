@@ -20,7 +20,7 @@ jobs:
           command: npm run test
       - run:
           name: Code-coverage
-          command: './coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js'
+          command: './coverage/lcov.info'
       - store_artifacts:
           path: test-results.xml
           prefix: tests
