@@ -6,6 +6,8 @@ This is a React.js single page app that uses Redux to hold state of the widget (
 
 [![Coverage Status](https://coveralls.io/repos/github/lukasz81/LZF/badge.svg?branch=master)](https://coveralls.io/github/lukasz81/LZF?branch=master)
 
+[![CircleCI](https://circleci.com/gh/lukasz81/LZF/tree/master.svg?style=shield)](https://circleci.com/gh/lukasz81/LZF/tree/master)
+
 ## TL;DR
 
 To get started right away:
