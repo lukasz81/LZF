@@ -5,6 +5,8 @@ import ConnectedHeader,{Header} from './Header';
 import configureMockStore from 'redux-mock-store';
 import App from '../App';
 import {initialState} from "../initialState";
+import * as actions from "../actions";
+import * as actionTypes from "../actions/actionTypes";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -31,5 +33,11 @@ describe('<Header/>', () => {
         const props = container.props();
         expect(props.submitValues).toEqual(initialState);
     });
-    
+
+    it('checks "submitDonation" action on dispatching', () => {
+        mockedStore.dispatch(actions.submitDonation(initialState));
+        expect(mockedStore.getActions()[0].submitValues).toEqual(initialState);
+        expect(mockedStore.getActions()[0].type).toEqual(actionTypes.SUBMIT_DONATION)
+    });
+
 });

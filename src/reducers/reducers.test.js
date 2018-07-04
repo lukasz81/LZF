@@ -55,6 +55,18 @@ describe('Testing handling reducers', () => {
         })
     });
 
+    it('should output donations.value as NUMBER in editFormReducer SET_DONATION_VALUE', () => {
+        let donations = {
+            value: '10',
+            isSetManually: true
+        };
+        let received = editFormReducer([], {
+            type: types.SET_DONATION_VALUE,
+            donation: donations,
+        });
+        expect(typeof received.donation.value).toEqual('number');
+    });
+
     it('should output isUserSettingIllegalManualValue = false in editFormReducer SET_DONATION_VALUE', () => {
         let donations = {
             value: 15,
