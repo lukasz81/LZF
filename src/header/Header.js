@@ -11,6 +11,10 @@ export class Header extends Component {
         this.props.submitDonation(this.props.submitValues)
     };
 
+    buttonClassName = () => {
+        return this.props.isUserSettingIllegalManualValue ? 'error' : '';
+    };
+
     render() {
         return (
                 <header className='header display--flex'>
@@ -34,7 +38,7 @@ export class Header extends Component {
                         </form>
                         <button
                             onClick={this.handleDonateClick}
-                            className={`${this.props.isUserSettingIllegalManualValue ? 'error' : ''} cta text-transform--uppercase align-self--center`}>
+                            className={`${this.buttonClassName()} cta text-transform--uppercase align-self--center`}>
                             Donate now
                         </button>
                     </div>
